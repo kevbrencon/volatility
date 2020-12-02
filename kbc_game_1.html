@@ -6,7 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Lobster" rel="stylesheet">
   </head>
   <body>
-  <h1>The first game based on the same Simon</h1>
+  <h1>The first game based on the game Simon</h1>
+    <br>
+    <br>
+    <button>Click here for a test sound</button>
     <br>
     <br>
     <a href="https://kevbrencon.github.io/volatility/">Return to main page</a>
@@ -17,6 +20,14 @@
     background-color: grey;
     }
   </style>
+    <script>
+    $("button").on("click",function(){
+    var audio = new Audio("blue.mp3");
+      alert("sound should be heard");
+     audio.play();
+    });
+    
+    </script>
   </body>
   
     </html>
