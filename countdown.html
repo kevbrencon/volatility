@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Number Puzzle Generator</title>
+<script>
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function sample(arr, count) {
+    let results = [];
+    let _arr = arr.slice();
+    while (results.length < count) {
+        let index = getRandomInt(0, _arr.length - 1);
+        results.push(_arr[index]);
+        _arr.splice(index, 1);
+    }
+    return results;
+}
+
+function generateCountdownNumbers() {
+    const largeNumbers = [25, 50, 75, 100];
+    const smallNumbers = Array.from({length: 10}, (_, i) => i + 1);  // Numbers 1 through 10
+
+    const numLarge = getRandomInt(0, 4);
+    const numSmall = 6 - numLarge;
+
+    const selectedLarge = sample(largeNumbers, numLarge);
+    const selectedSmall = sample(smallNumbers, numSmall);
+
+    return selectedLarge.concat(selectedSmall);
+}
+
+function generateTarget() {
+    return getRandomInt(100, 999);
+}
+
+function generatePuzzle() {
+    const numbers = generateCountdownNumbers();
+    const target = generateTarget();
+
+    document.getElementById('numbers').textContent = `Numbers: ${numbers.join(', ')}`;
+    document.getElementById('target').textContent = `Target: ${target}`;
+}
+</script>
+</head>
+<body>
+
+<h2>Countdown Number Puzzle Generator</h2>
+<button onclick="generatePuzzle()">Generate Puzzle</button>
+<p id="numbers">Numbers: </p>
+<p id="target">Target: </p>
+
+</body>
+</html>
 
