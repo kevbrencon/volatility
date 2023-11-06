@@ -25,6 +25,7 @@ function generateCountdownNumbers() {
     const smallNumbers = Array.from({length: 10}, (_, i) => i + 1);  // Numbers 1 through 10
 
     const numLarge = getRandomInt(0, 4);
+    const numLarge = 2;
     const numSmall = 6 - numLarge;
 
     const selectedLarge = sample(largeNumbers, numLarge);
