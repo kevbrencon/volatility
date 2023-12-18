@@ -1,67 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
     <style>
-        p {
-            font-size: 20px;
-        }
-        button {
+        body {
+            text-align: center;
             font-size: 20px;
         }
     </style>
-<title>Countdown Number Puzzle Generator</title>
-<script>
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function sample(arr, count) {
-    let results = [];
-    let _arr = arr.slice();
-    while (results.length < count) {
-        let index = getRandomInt(0, _arr.length - 1);
-        results.push(_arr[index]);
-        _arr.splice(index, 1);
-    }
-    return results;
-}
-
-function generateCountdownNumbers() {
-    const largeNumbers = [25, 50, 75, 100];
-    const smallNumbers = Array.from({length: 10}, (_, i) => i + 1);  // Numbers 1 through 10
-
-    const numLarge = 1;
-    const numSmall = 6 - numLarge;
-
-    const selectedLarge = sample(largeNumbers, numLarge);
-    const selectedSmall = sample(smallNumbers, numSmall);
-
-    return selectedLarge.concat(selectedSmall);
-}
-
-function generateTarget() {
-    return getRandomInt(100, 999);
-}
-
-function generatePuzzle() {
-    const numbers = generateCountdownNumbers();
-    const target = generateTarget();
-
-    document.getElementById('numbers').textContent = `Numbers: ${numbers.join(', ')}`;
-    document.getElementById('target').textContent = `Target: ${target}`;
-}
-</script>
 </head>
 <body>
 
-<h2>Countdown Number Puzzle Generator</h2>
-<button onclick="generatePuzzle()">Generate Puzzle</button>
-<p id="numbers" style="font-size: 20px;">Your 6 numbers are: </p>
-<p id="target" style="font-size: 20px;">Your target number is: </p>
+<h2>Random Number Generator</h2>
+<button onclick="generateRandomNumbers()">Generate Numbers</button>
+<p id="randomNumbers"></p>
 
+<script>
+function generateRandomNumbers() {
+    var numbers = [];
+    for (var i = 0; i < 3; i++) {
+        numbers.push(Math.floor(Math.random() * 20) + 1);
+    }
+    document.getElementById("randomNumbers").innerHTML = numbers.join(', ');
+}
+</script>
 
 </body>
 </html>
-
