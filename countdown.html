@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Random Number Generator</title>
+    <title>Number Generation Game</title>
     <style>
         body {
             text-align: center;
@@ -11,17 +11,29 @@
 </head>
 <body>
 
-<h2>Random Number Generator</h2>
-<button onclick="generateRandomNumbers()">Generate Numbers</button>
-<p id="randomNumbers"></p>
+<h2>Number Generation Game</h2>
+<button onclick="generateNumbers()">Generate Numbers</button>
+<p id="largeNumber">Large Number: </p>
+<p id="smallNumbers">Small Numbers: </p>
+<p id="targetNumber">Target Number: </p>
 
 <script>
-function generateRandomNumbers() {
-    var numbers = [];
-    for (var i = 0; i < 3; i++) {
-        numbers.push(Math.floor(Math.random() * 20) + 1);
+function generateNumbers() {
+    // Generate one large number
+    var largeNumbers = [25, 50, 75, 100];
+    var largeNumber = largeNumbers[Math.floor(Math.random() * largeNumbers.length)];
+    document.getElementById("largeNumber").innerHTML = "Large Number: " + largeNumber;
+
+    // Generate five small numbers
+    var smallNumbers = [];
+    for (var i = 0; i < 5; i++) {
+        smallNumbers.push(Math.floor(Math.random() * 10) + 1);
     }
-    document.getElementById("randomNumbers").innerHTML = numbers.join(', ');
+    document.getElementById("smallNumbers").innerHTML = "Small Numbers: " + smallNumbers.join(', ');
+
+    // Generate target number
+    var targetNumber = Math.floor(Math.random() * 900) + 100;
+    document.getElementById("targetNumber").innerHTML = "Target Number: " + targetNumber;
 }
 </script>
 
