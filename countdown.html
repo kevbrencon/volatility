@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Coutdown Game</title>
+    <title>Countdown Game</title>
     <style>
         body {
             text-align: center;
-            font-size: 30px;
+            font-size: 40px;
+        }
+        button {
+            font-size: 30px; /* Larger font size for the button text */
+            padding: 10px 20px; /* Top and bottom padding of 10px, left and right padding of 20px */
+            margin: 10px; /* Optional: adds space around the button */
+            border-radius: 5px; /* Optional: rounds the corners of the button */
+            cursor: pointer; /* Changes the mouse cursor to a pointer when hovering over the button */
         }
     </style>
 </head>
 <body>
 
-<h2>Mental Arithmetic</h2>
-<h2>Exercises</h2>
-    
+<h2>Number Generation Game</h2>
 <button onclick="generateNumbers()">Generate Numbers</button>
 <p id="largeNumber">Large Number: </p>
 <p id="smallNumbers">Small Numbers: </p>
 <p id="targetNumber">Target Number: </p>
 
 <script>
-function generateNumbers() {
-    // Generate one large number
-    var largeNumbers = [25, 50, 75, 100];
-    var largeNumber = largeNumbers[Math.floor(Math.random() * largeNumbers.length)];
-    document.getElementById("largeNumber").innerHTML = "Large Number: " + largeNumber;
+    function generateNumbers() {
+        // Generate one large number
+        var largeNumbers = [25, 50, 75, 100];
+        var largeNumber = largeNumbers[Math.floor(Math.random() * largeNumbers.length)];
+        document.getElementById("largeNumber").innerHTML = "Large Number: " + largeNumber;
 
-    // Generate five small numbers
-    var smallNumbers = [];
-    for (var i = 0; i < 5; i++) {
-        smallNumbers.push(Math.floor(Math.random() * 10) + 1);
+        // Generate five small numbers
+        var smallNumbers = [];
+        for (var i = 0; i < 5; i++) {
+            smallNumbers.push(Math.floor(Math.random() * 10) + 1);
+        }
+        document.getElementById("smallNumbers").innerHTML = "Small Numbers: " + smallNumbers.join(', ');
+
+        // Generate target number
+        var targetNumber = Math.floor(Math.random() * 900) + 100;
+        document.getElementById("targetNumber").innerHTML = "Target Number: " + targetNumber;
     }
-    document.getElementById("smallNumbers").innerHTML = "Small Numbers: " + smallNumbers.join(', ');
-
-    // Generate target number
-    var targetNumber = Math.floor(Math.random() * 900) + 100;
-    document.getElementById("targetNumber").innerHTML = "Target Number: " + targetNumber;
-}
 </script>
 
 </body>
