@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Countdown Game 1</title>
+    <title>Countdown Game</title>
     <style>
         body {
             text-align: center;
@@ -19,15 +20,19 @@
 <body>
 
 <h2>Mental Arithmetic</h2>
-<h2>Exercises (Easy)</h2>
+<h2>Exercises</h2>
     
 <button onclick="generateNumbers()">Generate Numbers</button>
-<p id="smallNumbers">Numbers: </p>
-
+<p id="largeNumber">Large Number: </p>
+<p id="smallNumbers">Small Numbers: </p>
 <p id="targetNumber">Target Number: </p>
 
 <script>
     function generateNumbers() {
+        // Generate one large number
+        var largeNumbers = [25, 50, 75, 100];
+        var largeNumber = largeNumbers[Math.floor(Math.random() * largeNumbers.length)];
+        document.getElementById("largeNumber").innerHTML = "Large Number: " + largeNumber;
 
         // Generate six small numbers
         var smallNumbers = [];
@@ -37,7 +42,7 @@
         document.getElementById("smallNumbers").innerHTML = "Small Numbers: " + smallNumbers.join(', ');
 
         // Generate target number
-        var targetNumber = Math.floor(Math.random() * 400) + 100;
+        var targetNumber = Math.floor(Math.random() * 900) + 100;
         document.getElementById("targetNumber").innerHTML = "Target Number: " + targetNumber;
     }
 </script>
