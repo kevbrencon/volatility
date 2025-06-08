@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Two Lage</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 40px;
+        }
+        button {
+            font-size: 30px;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Kevin Connolly's Mental</h2>
+<h2>Arithmetic Exercises</h2>
+    
+<button onclick="generateNumbers()">Generate Numbers</button>
+<p id="largeNumber">Large Numbers: </p>
+<p id="smallNumbers">Small Numbers: </p>
+<p id="targetNumber">Target Number: </p>
+
+<script>
+    function generateNumbers() {
+        // Generate two unique large numbers
+        var largePool = [25, 50, 75, 100];
+        var largeNumbers = [];
+
+        while (largeNumbers.length < 2) {
+            var randIndex = Math.floor(Math.random() * largePool.length);
+            var selected = largePool[randIndex];
+            if (!largeNumbers.includes(selected)) {
+                largeNumbers.push(selected);
+            }
+        }
+
+        document.getElementById("largeNumber").innerHTML = "Large Numbers: " + largeNumbers.join(', ');
+
+        // Generate four small numbers (with possible repeats)
+        var smallNumbers = [];
+        for (var i = 0; i < 4; i++) {
+            smallNumbers.push(Math.floor(Math.random() * 10) + 1);
+        }
+        document.getElementById("smallNumbers").innerHTML = "Small Numbers: " + smallNumbers.join(', ');
+
+        // Generate target number between 100 and 999
+        var targetNumber = Math.floor(Math.random() * 900) + 100;
+        document.getElementById("targetNumber").innerHTML = "Target Number: " + targetNumber;
+    }
+</script>
+
+</body>
+</html>
