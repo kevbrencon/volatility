@@ -235,7 +235,9 @@
     <div class="buttons">
       <button class="secondary" id="flipBtn">Flip card</button>
       <button id="nextBtn">Next word</button>
+      <button id="speakBtn">🔊 Speak Spanish</button>
     </div>
+
 
     <div class="note">
       To add more words, edit the <strong>WORDS</strong> list in the code.
@@ -265,6 +267,63 @@
     const card      = document.getElementById("card");
     const flipBtn   = document.getElementById("flipBtn");
     const nextBtn   = document.getElementById("nextBtn");
+    const speakBtn  = document.getElementById("speakBtn");
+
+    let spanishVoice = null;
+    function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    // Try to find a Spanish voice (es-ES, es-MX, etc.)
+    spanishVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("es"));
+    }
+  
+
+  // Voices may load asynchronously
+    
+window.speechSynthesis.onvoiceschanged = loadVoices;
+// Call once in case they are already available
+loadVoices();
+function getCurrentSpanishWord() {
+  const flipped = card.classList.contains("flipped");
+  let word = "";
+
+  // We use the labels to know where Spanish is
+  if (frontLabel.textContent === "Spanish") {
+    word = flipped ? backText.textContent : frontText.textContent;
+  } else {
+    word = flipped ? frontText.textContent : backText.textContent;
+  }
+
+  return word.trim();
+}
+    function speakSpanish() {
+  if (!("speechSynthesis" in window)) {
+    alert("Sorry, speech is not supported in this browser.");
+    return;
+  }
+
+  const text = getCurrentSpanishWord();
+  if (!text) return;
+
+  // Stop anything currently speaking
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "es-ES"; // generic Spanish
+
+  if (spanishVoice) {
+    utterance.voice = spanishVoice;
+  }
+
+  // Optional tweaks:
+  utterance.rate = 0.95; // a bit slower
+  utterance.pitch = 1.0;
+
+  window.speechSynthesis.speak(utterance);
+}
+speakBtn.addEventListener("click", speakSpanish);
+
+
+
 
     const frontText = document.getElementById("card-front-text");
     const backText  = document.getElementById("card-back-text");
